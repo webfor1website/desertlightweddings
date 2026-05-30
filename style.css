@@ -61,7 +61,7 @@ a {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     font-weight: 500;
-    color: var(--white);
+    color: #D4D4D4;
 }
 
 .nav-scrolled .logo {
@@ -77,7 +77,7 @@ a {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
     font-weight: 400;
-    color: var(--white);
+    color: #D4D4D4;
     letter-spacing: 0.5px;
 }
 
