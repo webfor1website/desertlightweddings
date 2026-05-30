@@ -382,11 +382,6 @@ a {
     border-radius: 8px;
 }
 
-.masonry-item:nth-child(3n) {
-    grid-row: span 2;
-    aspect-ratio: 1/2;
-}
-
 /* About Page */
 .about-page {
     padding: 4rem 0;
