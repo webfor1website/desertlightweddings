@@ -371,14 +371,13 @@ a {
 }
 
 .masonry-item {
-    aspect-ratio: 1;
     overflow: hidden;
 }
 
 .masonry-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     border-radius: 8px;
 }
 
