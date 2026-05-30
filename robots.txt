@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://webfor1website.github.io/desertlightweddings/sitemap.xml
+Sitemap: https://desertlightweddings.com/sitemap.xml
