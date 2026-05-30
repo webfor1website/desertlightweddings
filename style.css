@@ -127,6 +127,7 @@ a {
     z-index: 1;
     color: var(--white);
     padding: 0 2rem;
+    margin-top: 15vh;
 }
 
 .hero h1 {
