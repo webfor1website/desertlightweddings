@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Desert Light Weddings | Scottsdale Wedding Photographer</title>
+    <meta name="description" content="Jake has shot 150+ weddings across Arizona over 10 years. Desert Light Weddings. Based in Scottsdale.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Desert Light Weddings</a>
+            <div class="nav-links">
+                <a href="portfolio.html">Portfolio</a>
+                <a href="about.html">About</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="about-page">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <div class="placeholder-image"></div>
+                </div>
+                <div class="about-bio">
+                    <h1>About Jake</h1>
+                    <p>I've been photographing weddings in Arizona for over ten years. 150 couples. 150 different stories. Every single one worth telling.</p>
+                    <p>I shoot on 50mm and 85mm primes at wide apertures — f/2.2 to 2.5 — which gives everything that soft, dreamy quality you've probably noticed in the portfolio. I'm not interested in stiff poses or forced smiles. I want the real moments. The ones you forgot I was there for.</p>
+                    <p>Based in Scottsdale. Available anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Desert Light Weddings &mdash; Scottsdale, AZ</p>
+            <div class="footer-links">
+                <a href="#">Instagram</a>
+                <a href="mailto:hello@desertlightweddings.com">hello@desertlightweddings.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
