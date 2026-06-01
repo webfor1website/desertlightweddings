@@ -1036,7 +1036,8 @@ a {
 
     .portfolio-grid,
     .testimonials-grid,
-    .pricing-grid {
+    .pricing-grid,
+    .packages-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1072,7 +1073,8 @@ a {
 @media (max-width: 640px) {
     .portfolio-grid,
     .testimonials-grid,
-    .pricing-grid {
+    .pricing-grid,
+    .packages-grid {
         grid-template-columns: 1fr;
     }
 
