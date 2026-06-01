@@ -1038,7 +1038,8 @@ a {
     .testimonials-grid,
     .pricing-grid,
     .packages-grid,
-    .steps-grid {
+    .steps-grid,
+    .blog-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1076,7 +1077,8 @@ a {
     .testimonials-grid,
     .pricing-grid,
     .packages-grid,
-    .steps-grid {
+    .steps-grid,
+    .blog-grid {
         grid-template-columns: 1fr;
     }
 
