@@ -599,6 +599,174 @@ a {
     margin-top: 2rem;
 }
 
+/* Vendors Page */
+.vendors-section {
+    padding: 4rem 0;
+    background-color: var(--bg-color);
+}
+
+.vendors-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.cost-note {
+    font-size: 1rem;
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.vendors-section h3 {
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.vendor-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.vendor-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.vendor-card p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.vendor-cost {
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-top: 1rem;
+}
+
+.vendor-card a {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.vendor-card a:hover {
+    color: #b8985e;
+}
+
+/* Blog Page */
+.blog-section {
+    padding: 4rem 0;
+    background-color: var(--bg-color);
+}
+
+.blog-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.blog-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.blog-card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.blog-card p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.blog-card .btn {
+    margin-top: 1rem;
+}
+
+/* Blog Post */
+.blog-post {
+    padding: 4rem 0;
+    background-color: var(--bg-color);
+}
+
+.blog-post h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.blog-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.blog-content p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.blog-content ul {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.blog-content li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.blog-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* Venues Page */
+.venue-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.venue-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.venue-card p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
 /* Responsive Design */
 @media (max-width: 968px) {
     .about-teaser-grid,
