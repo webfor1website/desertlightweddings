@@ -442,11 +442,13 @@ a {
     display: flex;
     justify-content: center;
     gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .footer-links a {
     font-size: 0.9rem;
     color: var(--secondary-color);
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
