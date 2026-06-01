@@ -55,6 +55,9 @@
         <div class="container">
             <div class="contact-wrapper">
                 <div class="contact-form">
+                    <div id="success-message" style="display: none; background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;">
+                        Thank you for your message! I'll get back to you within 24 hours.
+                    </div>
                     <form name="contact" method="POST" data-netlify="true" action="/thankyou.html">
                         <input type="hidden" name="form-name" value="contact">
                         <div class="form-group">
@@ -136,6 +139,21 @@
                     hamburger.classList.remove('active');
                     navLinks.classList.remove('active');
                 });
+            });
+        }
+
+        // Form submission handling
+        const form = document.querySelector('form[name="contact"]');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Show success message
+                const successMessage = document.getElementById('success-message');
+                if (successMessage) {
+                    successMessage.style.display = 'block';
+                }
+                // Hide form
+                form.style.display = 'none';
             });
         }
     </script>
