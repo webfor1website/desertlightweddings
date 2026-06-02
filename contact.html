@@ -55,13 +55,7 @@
         <div class="container">
             <div class="contact-wrapper">
                 <div class="contact-form">
-                    <div id="success-message" style="display: none; background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;">
-                        Thank you for your message! I'll get back to you within 24 hours.
-                    </div>
-                    <form action="https://formsubmit.co/thompson.asumkt@gmail.com" method="POST">
-                        <input type="hidden" name="_subject" value="New Inquiry from Desert Light Weddings">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://desertlightweddings.com/contact.html?submitted=true">
+                    <form action="https://formspree.io/f/mzdwngea" method="POST">
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" name="name" required>
@@ -142,22 +136,6 @@
                     navLinks.classList.remove('active');
                 });
             });
-        }
-
-        // Show success message if redirected back with submitted parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('submitted') === 'true') {
-            const successMessage = document.getElementById('success-message');
-            const form = document.querySelector('form');
-            if (successMessage) {
-                successMessage.style.display = 'block';
-                // Hide form
-                if (form) {
-                    form.style.display = 'none';
-                }
-                // Clear the URL parameter
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
         }
     </script>
 </body>
