@@ -430,6 +430,21 @@ img {
     background-color: var(--secondary-color);
 }
 
+/* About Summary */
+.about-summary {
+    padding: 4rem 0;
+    background-color: var(--bg-color);
+    text-align: center;
+}
+
+.summary-text {
+    font-size: 0.95rem;
+    max-width: 700px;
+    margin: 2rem auto;
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
 /* Footer */
 .footer {
     background-color: var(--text-color);
