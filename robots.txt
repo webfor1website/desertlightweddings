@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /thankyou.html
 
 Sitemap: https://desertlightweddings.com/sitemap.xml
