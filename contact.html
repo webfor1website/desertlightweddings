@@ -144,18 +144,11 @@
             });
         }
 
-        // Form submission handling
-        const form = document.querySelector('form');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                // Let FormSubmit handle the submission normally
-            });
-        }
-
         // Show success message if redirected back with submitted parameter
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('submitted') === 'true') {
             const successMessage = document.getElementById('success-message');
+            const form = document.querySelector('form');
             if (successMessage) {
                 successMessage.style.display = 'block';
                 // Hide form
