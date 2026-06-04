@@ -32,12 +32,30 @@ document.addEventListener('DOMContentLoaded', function() {
         ).join('');
     }
     
+    // Generate unique serial number
+    function generateSerialNumber() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let serial = 'DLW-';
+        for (let i = 0; i < 4; i++) {
+            serial += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        serial += '-';
+        for (let i = 0; i < 4; i++) {
+            serial += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return serial;
+    }
+    
     // Form submission
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        // Generate serial number
+        const serialNumber = generateSerialNumber();
+        
         // Collect form data
         const weddingData = {
+            serialNumber: serialNumber,
             partner1: document.getElementById('partner1').value,
             partner2: document.getElementById('partner2').value,
             weddingDate: document.getElementById('wedding-date').value,
@@ -50,7 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
             registry: [],
             hotelInfo: document.getElementById('hotel-info').value,
             rsvpEmail: document.getElementById('rsvp-email').value,
-            urlSlug: document.getElementById('url-slug').value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+            urlSlug: document.getElementById('url-slug').value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+            createdAt: new Date().toISOString()
         };
         
         // Collect bridesmaids
@@ -74,19 +93,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Save to localStorage
-        localStorage.setItem('weddingData', JSON.stringify(weddingData));
+        // Save to localStorage with serial number as key
+        localStorage.setItem('wedding_' + serialNumber, JSON.stringify(weddingData));
+        
+        // Also save by slug for direct URL access
+        localStorage.setItem('wedding_slug_' + weddingData.urlSlug, serialNumber);
         
         // Generate URL
-        const weddingUrl = `weddings/${weddingData.urlSlug}.html`;
+        const weddingUrl = `weddings/template.html?code=${serialNumber}`;
         
-        // Show preview link
+        // Show confirmation page
+        form.style.display = 'none';
         document.getElementById('preview-link').style.display = 'block';
-        document.getElementById('website-link').href = weddingUrl;
-        
-        // In a real implementation, this would generate the actual HTML file
-        // For now, we'll redirect to the template with the data
-        alert('Your wedding website has been created! Click the link below to view it.');
+        document.getElementById('preview-link').innerHTML = `
+            <h3>Your wedding website is ready!</h3>
+            <p style="font-size: 1.2rem; margin: 1rem 0;"><strong>Your Wedding Code:</strong> <span style="color: #C9A96E; font-size: 1.5rem;">${serialNumber}</span></p>
+            <p style="margin: 1rem 0;"><a id="website-link" href="${weddingUrl}" target="_blank" style="color: #C9A96E; font-weight: 600; font-size: 1.2rem;">View your website →</a></p>
+            <p style="margin-top: 1rem;"><small>Save this code to find your wedding later: <strong>${serialNumber}</strong></small></p>
+            <p style="margin-top: 0.5rem;"><small>Your URL: desertlightweddings.com/${weddingUrl}</small></p>
+        `;
     });
     
     // Hamburger menu

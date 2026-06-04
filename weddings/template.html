@@ -294,109 +294,120 @@
     </footer>
 
     <script>
+        // Get serial number from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const weddingCode = urlParams.get('code');
+        
         // Load wedding data from localStorage
-        const weddingData = JSON.parse(localStorage.getItem('weddingData')) || {};
-        
-        // Populate page
-        document.getElementById('partner1-name').textContent = weddingData.partner1 || 'Partner 1';
-        document.getElementById('partner2-name').textContent = weddingData.partner2 || 'Partner 2';
-        document.getElementById('page-title').textContent = `${weddingData.partner1 || 'Partner 1'} & ${weddingData.partner2 || 'Partner 2'} Wedding`;
-        
-        if (weddingData.weddingDate) {
-            const date = new Date(weddingData.weddingDate);
-            document.getElementById('wedding-date-display').textContent = date.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
+        let weddingData;
+        if (weddingCode) {
+            weddingData = JSON.parse(localStorage.getItem('wedding_' + weddingCode));
         }
         
-        document.getElementById('venue-display').textContent = weddingData.venue || 'Venue TBD';
-        document.getElementById('love-story-content').innerHTML = `<p>${weddingData.loveStory || 'No love story provided yet.'}</p>`;
-        
-        // Photo gallery
-        const gallery = document.getElementById('photo-gallery');
-        if (weddingData.photos && weddingData.photos.length > 0) {
-            gallery.innerHTML = weddingData.photos.map(photo => 
-                `<img src="${photo}" alt="Wedding photo">`
-            ).join('');
-        }
-        
-        // Wedding party
-        const bridesmaidsList = document.getElementById('bridesmaids-list');
-        if (weddingData.bridesmaids && weddingData.bridesmaids.length > 0) {
-            bridesmaidsList.innerHTML = weddingData.bridesmaids
-                .filter(name => name.trim())
-                .map(name => `<div class="party-member"><p>${name}</p></div>`)
-                .join('');
-        }
-        
-        const groomsmenList = document.getElementById('groomsmen-list');
-        if (weddingData.groomsmen && weddingData.groomsmen.length > 0) {
-            groomsmenList.innerHTML = weddingData.groomsmen
-                .filter(name => name.trim())
-                .map(name => `<div class="party-member"><p>${name}</p></div>`)
-                .join('');
-        }
-        
-        // Registry links
-        const registryLinks = document.getElementById('registry-links');
-        if (weddingData.registry && weddingData.registry.length > 0) {
-            registryLinks.innerHTML = weddingData.registry
-                .filter(url => url.trim())
-                .map(url => `<a href="${url}" target="_blank" class="registry-btn">View Registry</a>`)
-                .join('');
-        }
-        
-        // Hotel info
-        document.getElementById('hotel-info-content').innerHTML = `<p>${weddingData.hotelInfo || 'No hotel information provided yet.'}</p>`;
-        
-        // Countdown timer
-        if (weddingData.weddingDate) {
-            const weddingDate = new Date(weddingData.weddingDate);
+        if (!weddingData) {
+            document.body.innerHTML = '<div style="padding: 4rem 2rem; text-align: center;"><h1>Wedding Not Found</h1><p>Please check your wedding code or <a href="index.html">create a new wedding website</a>.</p></div>';
+        } else {
+            // Populate page
+            document.getElementById('partner1-name').textContent = weddingData.partner1 || 'Partner 1';
+            document.getElementById('partner2-name').textContent = weddingData.partner2 || 'Partner 2';
+            document.getElementById('page-title').textContent = `${weddingData.partner1 || 'Partner 1'} & ${weddingData.partner2 || 'Partner 2'} Wedding`;
             
-            function updateCountdown() {
-                const now = new Date();
-                const diff = weddingDate - now;
-                
-                if (diff > 0) {
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                    
-                    document.getElementById('days').textContent = days;
-                    document.getElementById('hours').textContent = hours;
-                    document.getElementById('minutes').textContent = minutes;
-                    document.getElementById('seconds').textContent = seconds;
-                }
+            if (weddingData.weddingDate) {
+                const date = new Date(weddingData.weddingDate);
+                document.getElementById('wedding-date-display').textContent = date.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
             }
             
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+            document.getElementById('venue-display').textContent = weddingData.venue || 'Venue TBD';
+            document.getElementById('love-story-content').innerHTML = `<p>${weddingData.loveStory || 'No love story provided yet.'}</p>`;
+            
+            // Photo gallery
+            const gallery = document.getElementById('photo-gallery');
+            if (weddingData.photos && weddingData.photos.length > 0) {
+                gallery.innerHTML = weddingData.photos.map(photo => 
+                    `<img src="${photo}" alt="Wedding photo">`
+                ).join('');
+            }
+            
+            // Wedding party
+            const bridesmaidsList = document.getElementById('bridesmaids-list');
+            if (weddingData.bridesmaids && weddingData.bridesmaids.length > 0) {
+                bridesmaidsList.innerHTML = weddingData.bridesmaids
+                    .filter(name => name.trim())
+                    .map(name => `<div class="party-member"><p>${name}</p></div>`)
+                    .join('');
+            }
+            
+            const groomsmenList = document.getElementById('groomsmen-list');
+            if (weddingData.groomsmen && weddingData.groomsmen.length > 0) {
+                groomsmenList.innerHTML = weddingData.groomsmen
+                    .filter(name => name.trim())
+                    .map(name => `<div class="party-member"><p>${name}</p></div>`)
+                    .join('');
+            }
+            
+            // Registry links
+            const registryLinks = document.getElementById('registry-links');
+            if (weddingData.registry && weddingData.registry.length > 0) {
+                registryLinks.innerHTML = weddingData.registry
+                    .filter(url => url.trim())
+                    .map(url => `<a href="${url}" target="_blank" class="registry-btn">View Registry</a>`)
+                    .join('');
+            }
+            
+            // Hotel info
+            document.getElementById('hotel-info-content').innerHTML = `<p>${weddingData.hotelInfo || 'No hotel information provided yet.'}</p>`;
+            
+            // Countdown timer
+            if (weddingData.weddingDate) {
+                const weddingDate = new Date(weddingData.weddingDate);
+                
+                function updateCountdown() {
+                    const now = new Date();
+                    const diff = weddingDate - now;
+                    
+                    if (diff > 0) {
+                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                        
+                        document.getElementById('days').textContent = days;
+                        document.getElementById('hours').textContent = hours;
+                        document.getElementById('minutes').textContent = minutes;
+                        document.getElementById('seconds').textContent = seconds;
+                    }
+                }
+                
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+            }
+            
+            // RSVP form
+            document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const guestName = document.getElementById('guest-name').value;
+                const guestEmail = document.getElementById('guest-email').value;
+                const guestCount = document.getElementById('guest-count').value;
+                const guestMessage = document.getElementById('guest-message').value;
+                
+                // Create mailto link
+                const subject = encodeURIComponent(`RSVP for ${weddingData.partner1} & ${weddingData.partner2} Wedding`);
+                const body = encodeURIComponent(
+                    `Name: ${guestName}\n` +
+                    `Email: ${guestEmail}\n` +
+                    `Number of Guests: ${guestCount}\n` +
+                    `Message: ${guestMessage}`
+                );
+                
+                window.location.href = `mailto:${weddingData.rsvpEmail}?subject=${subject}&body=${body}`;
+            });
         }
-        
-        // RSVP form
-        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const guestName = document.getElementById('guest-name').value;
-            const guestEmail = document.getElementById('guest-email').value;
-            const guestCount = document.getElementById('guest-count').value;
-            const guestMessage = document.getElementById('guest-message').value;
-            
-            // Create mailto link
-            const subject = encodeURIComponent(`RSVP for ${weddingData.partner1} & ${weddingData.partner2} Wedding`);
-            const body = encodeURIComponent(
-                `Name: ${guestName}\n` +
-                `Email: ${guestEmail}\n` +
-                `Number of Guests: ${guestCount}\n` +
-                `Message: ${guestMessage}`
-            );
-            
-            window.location.href = `mailto:${weddingData.rsvpEmail}?subject=${subject}&body=${body}`;
-        });
     </script>
 </body>
 </html>

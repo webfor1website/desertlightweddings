@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find My Wedding | Desert Light Weddings</title>
+    <meta name="description" content="Find your wedding website using your unique wedding code.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <style>
+        .find-wedding {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .find-wedding h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .find-wedding p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .find-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .find-form input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+        .find-form input:focus {
+            outline: none;
+            border-color: #C9A96E;
+        }
+        .find-form button {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background-color: #C9A96E;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .find-form button:hover {
+            background-color: #B8985E;
+        }
+        .error-message {
+            color: #e74c3c;
+            margin-top: 1rem;
+            display: none;
+        }
+        .create-new {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+        }
+        .create-new a {
+            color: #C9A96E;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .create-new a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-monogram">
+                    <span>D</span>
+                    <span>L</span>
+                    <span>W</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">Desert Light</span>
+                    <span class="logo-sub">WEDDINGS</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../portfolio.html">Portfolio</a>
+                <a href="../about.html">About</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../packages.html">Packages</a>
+                <a href="../venues.html">Venues</a>
+                <a href="../vendors.html">Vendors</a>
+                <a href="../bride-resources.html">Bride Resources</a>
+                <a href="../blog.html">Blog</a>
+                <a href="index.html" style="color: #C9A96E; font-weight: 600;">Free Wedding Website</a>
+                <a href="find.html" style="color: #C9A96E; font-weight: 600;">Find My Wedding</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="find-wedding">
+        <div class="container">
+            <h1>Find My Wedding</h1>
+            <p>Enter your wedding code to view your wedding website.</p>
+            
+            <div class="find-form">
+                <form id="find-form">
+                    <input type="text" id="wedding-code" placeholder="DLW-XXXX-XXXX" required maxlength="10">
+                    <button type="submit">Find Our Wedding →</button>
+                </form>
+                <div class="error-message" id="error-message">Wedding not found. Please check your code.</div>
+            </div>
+            
+            <div class="create-new">
+                <p>Don't have a wedding website yet? <a href="index.html">Create one for free →</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Desert Light Weddings &mdash; Scottsdale, AZ</p>
+            <p><a href="../contact.html">Contact Us</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('find-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const weddingCode = document.getElementById('wedding-code').value.trim().toUpperCase();
+            
+            // Check if wedding exists in localStorage
+            const weddingData = localStorage.getItem('wedding_' + weddingCode);
+            
+            if (weddingData) {
+                // Redirect to wedding page
+                window.location.href = `template.html?code=${weddingCode}`;
+            } else {
+                // Show error
+                document.getElementById('error-message').style.display = 'block';
+            }
+        });
+
+        // Hamburger menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
