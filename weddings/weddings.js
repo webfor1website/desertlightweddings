@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
                     
-                    // Resize to max 800px width/height
-                    const maxSize = 800;
+                    // Resize to max 500px width/height
+                    const maxSize = 500;
                     let width = img.width;
                     let height = img.height;
                     
@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     canvas.height = height;
                     ctx.drawImage(img, 0, 0, width, height);
                     
-                    // Compress to JPEG at 0.7 quality
-                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                    // Compress to JPEG at 0.5 quality
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.5);
                     uploadedPhotos.push(compressedDataUrl);
                     updatePhotoPreview();
                 };
@@ -130,10 +130,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Save to localStorage with serial number as key
-        localStorage.setItem('wedding_' + serialNumber, JSON.stringify(weddingData));
-        
-        // Also save by slug for direct URL access
-        localStorage.setItem('wedding_slug_' + weddingData.urlSlug, serialNumber);
+        try {
+            localStorage.setItem('wedding_' + serialNumber, JSON.stringify(weddingData));
+            
+            // Also save by slug for direct URL access
+            localStorage.setItem('wedding_slug_' + weddingData.urlSlug, serialNumber);
+        } catch (e) {
+            if (e.name === 'QuotaExceededError') {
+                alert('Storage quota exceeded. Please try uploading fewer or smaller photos, or clear your browser\'s local storage.');
+                return;
+            }
+            throw e;
+        }
         
         // Generate URL
         const weddingUrl = `weddings/template.html?code=${serialNumber}`;
