@@ -89,7 +89,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Collect registry links
         document.querySelectorAll('.registry-inputs input').forEach(input => {
             if (input.value.trim()) {
-                weddingData.registry.push(input.value.trim());
+                let url = input.value.trim();
+                // Add https:// if missing
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    url = 'https://' + url;
+                }
+                weddingData.registry.push(url);
             }
         });
         
