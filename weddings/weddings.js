@@ -143,8 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
             throw e;
         }
         
-        // Generate URL
-        const weddingUrl = `template.html?code=${serialNumber}`;
+        // Generate URL using custom slug
+        const weddingUrl = `template.html?slug=${weddingData.urlSlug}`;
         
         // Show confirmation page
         form.style.display = 'none';

@@ -294,13 +294,21 @@
     </footer>
 
     <script>
-        // Get serial number from URL parameter
+        // Get slug or serial number from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
+        const weddingSlug = urlParams.get('slug');
         const weddingCode = urlParams.get('code');
         
         // Load wedding data from localStorage
         let weddingData;
-        if (weddingCode) {
+        
+        if (weddingSlug) {
+            // Try to get serial number from slug mapping
+            const serialNumber = localStorage.getItem('wedding_slug_' + weddingSlug);
+            if (serialNumber) {
+                weddingData = JSON.parse(localStorage.getItem('wedding_' + serialNumber));
+            }
+        } else if (weddingCode) {
             weddingData = JSON.parse(localStorage.getItem('wedding_' + weddingCode));
         }
         
