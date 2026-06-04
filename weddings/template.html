@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Our Wedding | Desert Light Weddings</title>
+    <meta name="description" content="Join us for our wedding celebration. View our love story, photos, wedding details, and RSVP.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <style>
+        .wedding-hero {
+            background: linear-gradient(135deg, #f5f0e8 0%, #fafaf8 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        .wedding-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        .wedding-hero .ampersand {
+            font-size: 2rem;
+            color: #C9A96E;
+            margin: 0 1rem;
+        }
+        .wedding-hero .date {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .countdown-item {
+            text-align: center;
+        }
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #C9A96E;
+        }
+        .countdown-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+        .wedding-section {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .wedding-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        .love-story {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            line-height: 1.8;
+            color: #555;
+        }
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .photo-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .wedding-party {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .party-group h3 {
+            text-align: center;
+            color: #C9A96E;
+            margin-bottom: 1.5rem;
+        }
+        .party-member {
+            text-align: center;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        .registry-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .registry-btn {
+            padding: 1rem 2rem;
+            background-color: #C9A96E;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .registry-btn:hover {
+            background-color: #B8985E;
+        }
+        .hotel-info {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .rsvp-form {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .rsvp-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .rsvp-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .rsvp-form input,
+        .rsvp-form textarea,
+        .rsvp-form select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+        .rsvp-form button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #C9A96E;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .rsvp-form button:hover {
+            background-color: #B8985E;
+        }
+        .wedding-footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #f5f0e8;
+            margin-top: 4rem;
+        }
+        .wedding-footer a {
+            color: #C9A96E;
+            text-decoration: none;
+        }
+        .wedding-footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .wedding-hero h1 {
+                font-size: 2rem;
+            }
+            .countdown {
+                gap: 1rem;
+            }
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="wedding-hero">
+        <h1>
+            <span id="partner1-name">Partner 1</span>
+            <span class="ampersand">&</span>
+            <span id="partner2-name">Partner 2</span>
+        </h1>
+        <p class="date" id="wedding-date-display">Date TBD</p>
+        <p id="venue-display" style="color: #666; margin-bottom: 2rem;">Venue TBD</p>
+        
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">0</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">0</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">0</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">0</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wedding-section">
+        <h2>Our Love Story</h2>
+        <div class="love-story" id="love-story-content">
+            <p>Loading...</p>
+        </div>
+    </section>
+
+    <section class="wedding-section">
+        <h2>Our Photos</h2>
+        <div class="photo-gallery" id="photo-gallery">
+            <p>No photos uploaded yet.</p>
+        </div>
+    </section>
+
+    <section class="wedding-section">
+        <h2>Wedding Party</h2>
+        <div class="wedding-party">
+            <div class="party-group">
+                <h3>Bridesmaids</h3>
+                <div id="bridesmaids-list"></div>
+            </div>
+            <div class="party-group">
+                <h3>Groomsmen</h3>
+                <div id="groomsmen-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wedding-section">
+        <h2>Registry</h2>
+        <div class="registry-buttons" id="registry-links">
+            <p>No registry links added yet.</p>
+        </div>
+    </section>
+
+    <section class="wedding-section">
+        <h2>Accommodations</h2>
+        <div class="hotel-info" id="hotel-info-content">
+            <p>No hotel information provided yet.</p>
+        </div>
+    </section>
+
+    <section class="wedding-section">
+        <h2>RSVP</h2>
+        <div class="rsvp-form">
+            <form id="rsvp-form">
+                <div class="form-group">
+                    <label for="guest-name">Your Name</label>
+                    <input type="text" id="guest-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="guest-email">Email Address</label>
+                    <input type="email" id="guest-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="guest-count">Number of Guests</label>
+                    <select id="guest-count">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="guest-message">Message (optional)</label>
+                    <textarea id="guest-message" rows="3"></textarea>
+                </div>
+                <button type="submit">Send RSVP</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="wedding-footer">
+        <p>Wedding website by <a href="https://desertlightweddings.com">Desert Light Weddings</a></p>
+    </footer>
+
+    <script>
+        // Load wedding data from localStorage
+        const weddingData = JSON.parse(localStorage.getItem('weddingData')) || {};
+        
+        // Populate page
+        document.getElementById('partner1-name').textContent = weddingData.partner1 || 'Partner 1';
+        document.getElementById('partner2-name').textContent = weddingData.partner2 || 'Partner 2';
+        document.getElementById('page-title').textContent = `${weddingData.partner1 || 'Partner 1'} & ${weddingData.partner2 || 'Partner 2'} Wedding`;
+        
+        if (weddingData.weddingDate) {
+            const date = new Date(weddingData.weddingDate);
+            document.getElementById('wedding-date-display').textContent = date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+        
+        document.getElementById('venue-display').textContent = weddingData.venue || 'Venue TBD';
+        document.getElementById('love-story-content').innerHTML = `<p>${weddingData.loveStory || 'No love story provided yet.'}</p>`;
+        
+        // Photo gallery
+        const gallery = document.getElementById('photo-gallery');
+        if (weddingData.photos && weddingData.photos.length > 0) {
+            gallery.innerHTML = weddingData.photos.map(photo => 
+                `<img src="${photo}" alt="Wedding photo">`
+            ).join('');
+        }
+        
+        // Wedding party
+        const bridesmaidsList = document.getElementById('bridesmaids-list');
+        if (weddingData.bridesmaids && weddingData.bridesmaids.length > 0) {
+            bridesmaidsList.innerHTML = weddingData.bridesmaids
+                .filter(name => name.trim())
+                .map(name => `<div class="party-member"><p>${name}</p></div>`)
+                .join('');
+        }
+        
+        const groomsmenList = document.getElementById('groomsmen-list');
+        if (weddingData.groomsmen && weddingData.groomsmen.length > 0) {
+            groomsmenList.innerHTML = weddingData.groomsmen
+                .filter(name => name.trim())
+                .map(name => `<div class="party-member"><p>${name}</p></div>`)
+                .join('');
+        }
+        
+        // Registry links
+        const registryLinks = document.getElementById('registry-links');
+        if (weddingData.registry && weddingData.registry.length > 0) {
+            registryLinks.innerHTML = weddingData.registry
+                .filter(url => url.trim())
+                .map(url => `<a href="${url}" target="_blank" class="registry-btn">View Registry</a>`)
+                .join('');
+        }
+        
+        // Hotel info
+        document.getElementById('hotel-info-content').innerHTML = `<p>${weddingData.hotelInfo || 'No hotel information provided yet.'}</p>`;
+        
+        // Countdown timer
+        if (weddingData.weddingDate) {
+            const weddingDate = new Date(weddingData.weddingDate);
+            
+            function updateCountdown() {
+                const now = new Date();
+                const diff = weddingDate - now;
+                
+                if (diff > 0) {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    
+                    document.getElementById('days').textContent = days;
+                    document.getElementById('hours').textContent = hours;
+                    document.getElementById('minutes').textContent = minutes;
+                    document.getElementById('seconds').textContent = seconds;
+                }
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+        
+        // RSVP form
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const guestName = document.getElementById('guest-name').value;
+            const guestEmail = document.getElementById('guest-email').value;
+            const guestCount = document.getElementById('guest-count').value;
+            const guestMessage = document.getElementById('guest-message').value;
+            
+            // Create mailto link
+            const subject = encodeURIComponent(`RSVP for ${weddingData.partner1} & ${weddingData.partner2} Wedding`);
+            const body = encodeURIComponent(
+                `Name: ${guestName}\n` +
+                `Email: ${guestEmail}\n` +
+                `Number of Guests: ${guestCount}\n` +
+                `Message: ${guestMessage}`
+            );
+            
+            window.location.href = `mailto:${weddingData.rsvpEmail}?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+</html>

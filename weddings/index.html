@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Free Wedding Website | Desert Light Weddings</title>
+    <meta name="description" content="Create your free wedding website in 60 seconds. Share your love story, photos, wedding details, and RSVP with guests. No account required.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <style>
+        .wedding-generator {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        .wedding-generator h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .wedding-generator .subheading {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        .form-section {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .form-section h3 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .photo-upload {
+            border: 2px dashed #ddd;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .photo-upload:hover {
+            border-color: #C9A96E;
+        }
+        .party-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .registry-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background-color: #C9A96E;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #B8985E;
+        }
+        .preview-link {
+            display: none;
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #f0f0f0;
+            border-radius: 8px;
+        }
+        .preview-link a {
+            color: #C9A96E;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-monogram">
+                    <span>D</span>
+                    <span>L</span>
+                    <span>W</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">Desert Light</span>
+                    <span class="logo-sub">WEDDINGS</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../portfolio.html">Portfolio</a>
+                <a href="../about.html">About</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../packages.html">Packages</a>
+                <a href="../venues.html">Venues</a>
+                <a href="../vendors.html">Vendors</a>
+                <a href="../bride-resources.html">Bride Resources</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="wedding-generator">
+        <div class="container">
+            <h1>Create Your Free Wedding Website</h1>
+            <p class="subheading">Free for every couple. No account required. Ready in 60 seconds.</p>
+
+            <form id="wedding-form">
+                <div class="form-section">
+                    <h3>Couple Information</h3>
+                    <div class="form-group">
+                        <label for="partner1">Partner 1 Name</label>
+                        <input type="text" id="partner1" required placeholder="e.g., Sarah">
+                    </div>
+                    <div class="form-group">
+                        <label for="partner2">Partner 2 Name</label>
+                        <input type="text" id="partner2" required placeholder="e.g., Michael">
+                    </div>
+                    <div class="form-group">
+                        <label for="wedding-date">Wedding Date</label>
+                        <input type="date" id="wedding-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="venue">Wedding Venue</label>
+                        <input type="text" id="venue" required placeholder="e.g., The Phoenician">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">City and State</label>
+                        <input type="text" id="location" required placeholder="e.g., Scottsdale, AZ">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Your Love Story</h3>
+                    <div class="form-group">
+                        <label for="love-story">Tell your story</label>
+                        <textarea id="love-story" placeholder="How you met, your proposal, what makes your love special..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Photos (up to 5)</h3>
+                    <div class="form-group">
+                        <div class="photo-upload" id="photo-upload">
+                            <p>Click to upload photos or drag and drop</p>
+                            <input type="file" id="photos" multiple accept="image/*" style="display: none;">
+                        </div>
+                        <div id="photo-preview" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 1rem;"></div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Wedding Party</h3>
+                    <div class="form-group">
+                        <label>Bridesmaid Names (up to 6)</label>
+                        <div class="party-inputs">
+                            <input type="text" placeholder="Bridesmaid 1">
+                            <input type="text" placeholder="Bridesmaid 2">
+                            <input type="text" placeholder="Bridesmaid 3">
+                            <input type="text" placeholder="Bridesmaid 4">
+                            <input type="text" placeholder="Bridesmaid 5">
+                            <input type="text" placeholder="Bridesmaid 6">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Groomsmen Names (up to 6)</label>
+                        <div class="party-inputs">
+                            <input type="text" placeholder="Groomsman 1">
+                            <input type="text" placeholder="Groomsman 2">
+                            <input type="text" placeholder="Groomsman 3">
+                            <input type="text" placeholder="Groomsman 4">
+                            <input type="text" placeholder="Groomsman 5">
+                            <input type="text" placeholder="Groomsman 6">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Registry Links (up to 3)</h3>
+                    <div class="form-group">
+                        <div class="registry-inputs">
+                            <input type="url" placeholder="Registry URL 1 (e.g., Amazon, Crate & Barrel)">
+                            <input type="url" placeholder="Registry URL 2">
+                            <input type="url" placeholder="Registry URL 3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Hotel Block Information</h3>
+                    <div class="form-group">
+                        <label for="hotel-info">Hotel details for guests</label>
+                        <textarea id="hotel-info" placeholder="Hotel name, booking code, room block details, special rates..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>RSVP</h3>
+                    <div class="form-group">
+                        <label for="rsvp-email">RSVP Email Address</label>
+                        <input type="email" id="rsvp-email" required placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Your Website URL</h3>
+                    <div class="form-group">
+                        <label for="url-slug">Custom URL</label>
+                        <input type="text" id="url-slug" required placeholder="your-names-here">
+                        <small style="color: #666;">Your website will be: desertlightweddings.com/weddings/your-names-here</small>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Our Wedding Website →</button>
+            </form>
+
+            <div class="preview-link" id="preview-link">
+                <h3>Your wedding website is ready!</h3>
+                <p><a id="website-link" href="#" target="_blank">View your website →</a></p>
+                <p style="margin-top: 1rem;"><small>Save this link to share with your guests.</small></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Desert Light Weddings — Scottsdale, AZ</p>
+            <p><a href="../contact.html">Contact Us</a></p>
+        </div>
+    </footer>
+
+    <script src="weddings.js"></script>
+</body>
+</html>
