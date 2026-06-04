@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Generate URL
-        const weddingUrl = `weddings/template.html?code=${serialNumber}`;
+        const weddingUrl = `template.html?code=${serialNumber}`;
         
         // Show confirmation page
         form.style.display = 'none';
