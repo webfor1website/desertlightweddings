@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let uploadedPhotos = [];
     
-    // Photo upload handling
+    // Photo upload handling with compression
     photoUpload.addEventListener('click', function() {
         photoInput.click();
     });
@@ -19,8 +19,39 @@ document.addEventListener('DOMContentLoaded', function() {
         files.forEach(file => {
             const reader = new FileReader();
             reader.onload = function(e) {
-                uploadedPhotos.push(e.target.result);
-                updatePhotoPreview();
+                const img = new Image();
+                img.onload = function() {
+                    // Create canvas for compression
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Resize to max 800px width/height
+                    const maxSize = 800;
+                    let width = img.width;
+                    let height = img.height;
+                    
+                    if (width > height) {
+                        if (width > maxSize) {
+                            height *= maxSize / width;
+                            width = maxSize;
+                        }
+                    } else {
+                        if (height > maxSize) {
+                            width *= maxSize / height;
+                            height = maxSize;
+                        }
+                    }
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    // Compress to JPEG at 0.7 quality
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                    uploadedPhotos.push(compressedDataUrl);
+                    updatePhotoPreview();
+                };
+                img.src = e.target.result;
             };
             reader.readAsDataURL(file);
         });
