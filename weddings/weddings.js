@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Form submission
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         // Generate serial number
@@ -135,78 +135,74 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Insert into Supabase
-        async function saveToSupabase() {
-            try {
-                const { data, error } = await supabase
-                    .from('weddings')
-                    .insert([{
-                        serial_number: weddingData.serialNumber,
-                        slug: weddingData.urlSlug,
-                        partner1: weddingData.partner1,
-                        partner2: weddingData.partner2,
-                        wedding_date: weddingData.weddingDate,
-                        venue: weddingData.venue,
-                        city_state: weddingData.location,
-                        love_story: weddingData.loveStory,
-                        bridesmaids: weddingData.bridesmaids,
-                        groomsmen: weddingData.groomsmen,
-                        registry_links: weddingData.registry,
-                        hotel_info: weddingData.hotelInfo,
-                        rsvp_email: weddingData.rsvpEmail,
-                        photos: weddingData.photos
-                    }])
-                    .select();
+        try {
+            const { data, error } = await supabase
+                .from('weddings')
+                .insert([{
+                    serial_number: weddingData.serialNumber,
+                    slug: weddingData.urlSlug,
+                    partner1: weddingData.partner1,
+                    partner2: weddingData.partner2,
+                    wedding_date: weddingData.weddingDate,
+                    venue: weddingData.venue,
+                    city_state: weddingData.location,
+                    love_story: weddingData.loveStory,
+                    bridesmaids: weddingData.bridesmaids,
+                    groomsmen: weddingData.groomsmen,
+                    registry_links: weddingData.registry,
+                    hotel_info: weddingData.hotelInfo,
+                    rsvp_email: weddingData.rsvpEmail,
+                    photos: weddingData.photos
+                }])
+                .select();
+            
+            if (error) throw error;
+            
+            // Generate URL using custom slug
+            const weddingUrl = `template.html?slug=${weddingData.urlSlug}`;
+            
+            // Show confirmation page
+            form.style.display = 'none';
+            document.getElementById('preview-link').style.display = 'block';
+            
+            document.getElementById('preview-link').innerHTML = `
+                <h3>Your wedding website is ready!</h3>
+                <p style="font-size: 1.2rem; margin: 1rem 0;"><strong>Your Wedding Code:</strong> <span style="color: #C9A96E; font-size: 1.5rem;">${serialNumber}</span></p>
+                <p style="margin: 1rem 0;"><a id="website-link" href="${weddingUrl}" target="_blank" style="color: #C9A96E; font-weight: 600; font-size: 1.2rem;">View your website →</a></p>
                 
-                if (error) throw error;
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #f9f9f9; border-radius: 8px;">
+                    <h4 style="margin-bottom: 1rem;">Email these details to yourself</h4>
+                    <form id="email-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <input type="email" id="email-input" placeholder="Enter your email address" required style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                        <button type="submit" style="padding: 0.75rem; background-color: #C9A96E; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Send Email →</button>
+                    </form>
+                </div>
                 
-                // Generate URL using custom slug
-                const weddingUrl = `template.html?slug=${weddingData.urlSlug}`;
+                <p style="margin-top: 1rem;"><small>Save this code to find your wedding later: <strong>${serialNumber}</strong></small></p>
+                <p style="margin-top: 0.5rem;"><small>Your URL: desertlightweddings.com/${weddingUrl}</small></p>
+            `;
+            
+            // Handle email form submission
+            document.getElementById('email-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('email-input').value;
                 
-                // Show confirmation page
-                form.style.display = 'none';
-                document.getElementById('preview-link').style.display = 'block';
+                const emailSubject = encodeURIComponent('Your Wedding Website Details');
+                const emailBody = encodeURIComponent(
+                    `Your wedding website is ready!\n\n` +
+                    `Wedding Code: ${serialNumber}\n` +
+                    `Your Wedding URL: https://desertlightweddings.com/weddings/template.html?slug=${weddingData.urlSlug}\n` +
+                    `Desert Light Weddings: https://desertlightweddings.com\n\n` +
+                    `Save your wedding code (${serialNumber}) to find your wedding later on the site.\n\n` +
+                    `Share your wedding website with guests: https://desertlightweddings.com/weddings/template.html?slug=${weddingData.urlSlug}`
+                );
                 
-                document.getElementById('preview-link').innerHTML = `
-                    <h3>Your wedding website is ready!</h3>
-                    <p style="font-size: 1.2rem; margin: 1rem 0;"><strong>Your Wedding Code:</strong> <span style="color: #C9A96E; font-size: 1.5rem;">${serialNumber}</span></p>
-                    <p style="margin: 1rem 0;"><a id="website-link" href="${weddingUrl}" target="_blank" style="color: #C9A96E; font-weight: 600; font-size: 1.2rem;">View your website →</a></p>
-                    
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: #f9f9f9; border-radius: 8px;">
-                        <h4 style="margin-bottom: 1rem;">Email these details to yourself</h4>
-                        <form id="email-form" style="display: flex; flex-direction: column; gap: 1rem;">
-                            <input type="email" id="email-input" placeholder="Enter your email address" required style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
-                            <button type="submit" style="padding: 0.75rem; background-color: #C9A96E; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Send Email →</button>
-                        </form>
-                    </div>
-                    
-                    <p style="margin-top: 1rem;"><small>Save this code to find your wedding later: <strong>${serialNumber}</strong></small></p>
-                    <p style="margin-top: 0.5rem;"><small>Your URL: desertlightweddings.com/${weddingUrl}</small></p>
-                `;
-                
-                // Handle email form submission
-                document.getElementById('email-form').addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const email = document.getElementById('email-input').value;
-                    
-                    const emailSubject = encodeURIComponent('Your Wedding Website Details');
-                    const emailBody = encodeURIComponent(
-                        `Your wedding website is ready!\n\n` +
-                        `Wedding Code: ${serialNumber}\n` +
-                        `Your Wedding URL: https://desertlightweddings.com/weddings/template.html?slug=${weddingData.urlSlug}\n` +
-                        `Desert Light Weddings: https://desertlightweddings.com\n\n` +
-                        `Save your wedding code (${serialNumber}) to find your wedding later on the site.\n\n` +
-                        `Share your wedding website with guests: https://desertlightweddings.com/weddings/template.html?slug=${weddingData.urlSlug}`
-                    );
-                    
-                    window.location.href = `mailto:${email}?subject=${emailSubject}&body=${emailBody}`;
-                });
-            } catch (error) {
-                console.error('Error saving to Supabase:', error);
-                alert('There was an error saving your wedding website. Please try again.');
-            }
+                window.location.href = `mailto:${email}?subject=${emailSubject}&body=${emailBody}`;
+            });
+        } catch (error) {
+            console.error('Error saving to Supabase:', error);
+            alert('There was an error saving your wedding website: ' + error.message);
         }
-        
-        saveToSupabase();
     });
     
     // Hamburger menu
