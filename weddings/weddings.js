@@ -149,10 +149,23 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show confirmation page
         form.style.display = 'none';
         document.getElementById('preview-link').style.display = 'block';
+        
+        // Create mailto link for emailing details
+        const emailSubject = encodeURIComponent('Your Wedding Website Details');
+        const emailBody = encodeURIComponent(
+            `Your wedding website is ready!\n\n` +
+            `Wedding Code: ${serialNumber}\n` +
+            `Your URL: https://desertlightweddings.com/weddings/template.html?slug=${weddingData.urlSlug}\n\n` +
+            `Save this code to find your wedding later: ${serialNumber}\n\n` +
+            `Share your wedding website with guests: https://desertlightweddings.com/weddings/template.html?slug=${weddingData.urlSlug}`
+        );
+        const emailLink = `mailto:${weddingData.rsvpEmail}?subject=${emailSubject}&body=${emailBody}`;
+        
         document.getElementById('preview-link').innerHTML = `
             <h3>Your wedding website is ready!</h3>
             <p style="font-size: 1.2rem; margin: 1rem 0;"><strong>Your Wedding Code:</strong> <span style="color: #C9A96E; font-size: 1.5rem;">${serialNumber}</span></p>
             <p style="margin: 1rem 0;"><a id="website-link" href="${weddingUrl}" target="_blank" style="color: #C9A96E; font-weight: 600; font-size: 1.2rem;">View your website →</a></p>
+            <p style="margin: 1rem 0;"><a href="${emailLink}" style="color: #C9A96E; font-weight: 600; font-size: 1.1rem;">Email these details to yourself →</a></p>
             <p style="margin-top: 1rem;"><small>Save this code to find your wedding later: <strong>${serialNumber}</strong></small></p>
             <p style="margin-top: 0.5rem;"><small>Your URL: desertlightweddings.com/${weddingUrl}</small></p>
         `;
