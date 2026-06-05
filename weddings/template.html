@@ -296,11 +296,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Initialize Supabase
         const supabaseUrl = 'https://ocbolrylxwwjmxjmmfzp.supabase.co';
         const supabaseKey = 'sb_publishable_-Tq5sOKfX3-Bs6wsRLIRcg_PTpZ9VU0';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
+        window.supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+    </script>
+    <script>
         // Get slug or serial number from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
         const weddingSlug = urlParams.get('slug');
@@ -313,7 +313,7 @@
             try {
                 if (weddingSlug) {
                     // Query by slug
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseClient
                         .from('weddings')
                         .select('*')
                         .eq('slug', weddingSlug)
@@ -323,7 +323,7 @@
                     weddingData = data;
                 } else if (weddingCode) {
                     // Query by serial number
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseClient
                         .from('weddings')
                         .select('*')
                         .eq('serial_number', weddingCode)
