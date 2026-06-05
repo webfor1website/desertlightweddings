@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Insert into Supabase
         try {
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('weddings')
                 .insert([{
                     serial_number: weddingData.serialNumber,
