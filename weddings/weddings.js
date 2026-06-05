@@ -1,10 +1,5 @@
 // Wedding Website Generator
 
-// Initialize Supabase
-const supabaseUrl = 'https://ocbolrylxwwjmxjmmfzp.supabase.co';
-const supabaseKey = 'sb_publishable_-Tq5sOKfX3-Bs6wsRLIRcg_PTpZ9VU0';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('wedding-form');
     const photoUpload = document.getElementById('photo-upload');
