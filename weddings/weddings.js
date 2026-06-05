@@ -150,25 +150,40 @@ document.addEventListener('DOMContentLoaded', function() {
         form.style.display = 'none';
         document.getElementById('preview-link').style.display = 'block';
         
-        // Create mailto link for emailing details
-        const emailSubject = encodeURIComponent('Your Wedding Website Details');
-        const emailBody = encodeURIComponent(
-            `Your wedding website is ready!\n\n` +
-            `Wedding Code: ${serialNumber}\n` +
-            `Your URL: https://desertlightweddings.com/weddings/template.html?slug=${weddingData.urlSlug}\n\n` +
-            `Save this code to find your wedding later: ${serialNumber}\n\n` +
-            `Share your wedding website with guests: https://desertlightweddings.com/weddings/template.html?slug=${weddingData.urlSlug}`
-        );
-        const emailLink = `mailto:${weddingData.rsvpEmail}?subject=${emailSubject}&body=${emailBody}`;
-        
         document.getElementById('preview-link').innerHTML = `
             <h3>Your wedding website is ready!</h3>
             <p style="font-size: 1.2rem; margin: 1rem 0;"><strong>Your Wedding Code:</strong> <span style="color: #C9A96E; font-size: 1.5rem;">${serialNumber}</span></p>
             <p style="margin: 1rem 0;"><a id="website-link" href="${weddingUrl}" target="_blank" style="color: #C9A96E; font-weight: 600; font-size: 1.2rem;">View your website →</a></p>
-            <p style="margin: 1rem 0;"><a href="${emailLink}" style="color: #C9A96E; font-weight: 600; font-size: 1.1rem;">Email these details to yourself →</a></p>
+            
+            <div style="margin-top: 2rem; padding: 1.5rem; background: #f9f9f9; border-radius: 8px;">
+                <h4 style="margin-bottom: 1rem;">Email these details to yourself</h4>
+                <form id="email-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <input type="email" id="email-input" placeholder="Enter your email address" required style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                    <button type="submit" style="padding: 0.75rem; background-color: #C9A96E; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Send Email →</button>
+                </form>
+            </div>
+            
             <p style="margin-top: 1rem;"><small>Save this code to find your wedding later: <strong>${serialNumber}</strong></small></p>
             <p style="margin-top: 0.5rem;"><small>Your URL: desertlightweddings.com/${weddingUrl}</small></p>
         `;
+        
+        // Handle email form submission
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value;
+            
+            const emailSubject = encodeURIComponent('Your Wedding Website Details');
+            const emailBody = encodeURIComponent(
+                `Your wedding website is ready!\n\n` +
+                `Wedding Code: ${serialNumber}\n` +
+                `Your Wedding URL: https://desertlightweddings.com/weddings/template.html?slug=${weddingData.urlSlug}\n` +
+                `Desert Light Weddings: https://desertlightweddings.com\n\n` +
+                `Save your wedding code (${serialNumber}) to find your wedding later on the site.\n\n` +
+                `Share your wedding website with guests: https://desertlightweddings.com/weddings/template.html?slug=${weddingData.urlSlug}`
+            );
+            
+            window.location.href = `mailto:${email}?subject=${emailSubject}&body=${emailBody}`;
+        });
     });
     
     // Hamburger menu
