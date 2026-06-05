@@ -358,24 +358,48 @@
                 
                 // Photo gallery
                 const gallery = document.getElementById('photo-gallery');
-                if (weddingData.photos && Array.isArray(weddingData.photos) && weddingData.photos.length > 0) {
-                    gallery.innerHTML = weddingData.photos.map(photo => 
+                let photos = weddingData.photos;
+                if (typeof photos === 'string') {
+                    try {
+                        photos = JSON.parse(photos);
+                    } catch (e) {
+                        photos = [];
+                    }
+                }
+                if (photos && Array.isArray(photos) && photos.length > 0) {
+                    gallery.innerHTML = photos.map(photo => 
                         `<img src="${photo}" alt="Wedding photo">`
                     ).join('');
                 }
                 
                 // Wedding party
                 const bridesmaidsList = document.getElementById('bridesmaids-list');
-                if (weddingData.bridesmaids && Array.isArray(weddingData.bridesmaids) && weddingData.bridesmaids.length > 0) {
-                    bridesmaidsList.innerHTML = weddingData.bridesmaids
+                let bridesmaids = weddingData.bridesmaids;
+                if (typeof bridesmaids === 'string') {
+                    try {
+                        bridesmaids = JSON.parse(bridesmaids);
+                    } catch (e) {
+                        bridesmaids = [];
+                    }
+                }
+                if (bridesmaids && Array.isArray(bridesmaids) && bridesmaids.length > 0) {
+                    bridesmaidsList.innerHTML = bridesmaids
                         .filter(name => name && name.trim())
                         .map(name => `<div class="party-member"><p>${name}</p></div>`)
                         .join('');
                 }
                 
                 const groomsmenList = document.getElementById('groomsmen-list');
-                if (weddingData.groomsmen && Array.isArray(weddingData.groomsmen) && weddingData.groomsmen.length > 0) {
-                    groomsmenList.innerHTML = weddingData.groomsmen
+                let groomsmen = weddingData.groomsmen;
+                if (typeof groomsmen === 'string') {
+                    try {
+                        groomsmen = JSON.parse(groomsmen);
+                    } catch (e) {
+                        groomsmen = [];
+                    }
+                }
+                if (groomsmen && Array.isArray(groomsmen) && groomsmen.length > 0) {
+                    groomsmenList.innerHTML = groomsmen
                         .filter(name => name && name.trim())
                         .map(name => `<div class="party-member"><p>${name}</p></div>`)
                         .join('');
@@ -383,8 +407,16 @@
                 
                 // Registry links
                 const registryLinks = document.getElementById('registry-links');
-                if (weddingData.registry_links && Array.isArray(weddingData.registry_links) && weddingData.registry_links.length > 0) {
-                    registryLinks.innerHTML = weddingData.registry_links
+                let registryLinksData = weddingData.registry_links;
+                if (typeof registryLinksData === 'string') {
+                    try {
+                        registryLinksData = JSON.parse(registryLinksData);
+                    } catch (e) {
+                        registryLinksData = [];
+                    }
+                }
+                if (registryLinksData && Array.isArray(registryLinksData) && registryLinksData.length > 0) {
+                    registryLinks.innerHTML = registryLinksData
                         .filter(url => url && url.trim())
                         .map(url => `<a href="${url}" target="_blank" class="registry-btn">View Registry</a>`)
                         .join('');
