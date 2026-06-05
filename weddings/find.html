@@ -149,18 +149,34 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        document.getElementById('find-form').addEventListener('submit', function(e) {
+        // Initialize Supabase
+        const supabaseUrl = 'https://ocbolrylxwwjmxjmmfzp.supabase.co';
+        const supabaseKey = 'sb_publishable_-Tq5sOKfX3-Bs6wsRLIRcg_PTpZ9VU0';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        document.getElementById('find-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const weddingCode = document.getElementById('wedding-code').value.trim().toUpperCase();
             
-            // Check if wedding exists in localStorage
-            const weddingData = localStorage.getItem('wedding_' + weddingCode);
+            // Query Supabase for wedding by serial number
+            const { data, error } = await supabase
+                .from('weddings')
+                .select('*')
+                .eq('serial_number', weddingCode)
+                .single();
             
-            if (weddingData) {
-                // Redirect to wedding page
-                window.location.href = `template.html?code=${weddingCode}`;
+            if (error) {
+                console.error('Error finding wedding:', error);
+                document.getElementById('error-message').style.display = 'block';
+                return;
+            }
+            
+            if (data) {
+                // Redirect to wedding page using slug
+                window.location.href = `template.html?slug=${data.slug}`;
             } else {
                 // Show error
                 document.getElementById('error-message').style.display = 'block';
